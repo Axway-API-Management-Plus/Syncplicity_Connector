@@ -18,11 +18,25 @@ The Axway API Gateway can also implement additional fine grain security, applyin
 
 This artifact is a prebuilt policy for the API Gateway that creates a SAML 2.0 token to authenticate an end user to Syncplicity, applying sample logic supporting MFA (multifactor authentication) with digital certificate and password, and digital certificate validation, before authenticating a user to the Syncplicity system.
 
+# Conceptual Flow Diagrams
+
+Example Flow Diagram:
+![alt text](src/images/flowDiagram.PNG "Syncplicity + APIGW Flow Diagram")
+
+Example High Level Architecture:
+![alt text](src/images/flowArchitecture.PNG "High Level Architecture")
+
 # Implementation
 
-- Import XML policy from the 'src' directory into the API Gateway. Update LDAP locations, digital signing certificates.
+- Import XML policy set from the 'src' directory into the API Gateway. Update LDAP locations in the auth policy, digital signing certificates in the login policy, and any other environmental items.
+
+![alt text](src/images/apiPolicy.PNG "Syncplicity Policy Set")
+
 - Import the Syncplicity certificates from the 'src' directory into your API Gateway trust store (Env Config --> Certs/Keys --> Import CA).
 - Configure your Syncplicity SSO configuration to point at your API Gateway and trust your signing certificate.
+
+![alt text](src/images/syncpConfig.PNG "Syncplicity Config")
+
 - Create the user(s) you wish to authenticate in Syncplicity.
 
 # Troubleshooting
