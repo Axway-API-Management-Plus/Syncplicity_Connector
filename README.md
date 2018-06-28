@@ -8,6 +8,8 @@ https://syncplicity.zendesk.com/hc/en-us/articles/202392804-Configuring-single-s
 API Gateway SAML Documentation:
 https://docs.axway.com/bundle/APIGateway_753_PolicyDevFilterReference_allOS_en_HTML5/page/Content/PolicyDevTopics/authn_saml_assertion.htm
 
+Version: This policy was tested with API Gateway v7.5.3 SP5.
+
 # Description
 
 Syncplicity allows companies of any size to leverage their existing corporate directories and authentication systems to authorize employee access to Syncplicity. The Syncplicity support for SSO is built on top of an industry-standard SAML 2.0 protocol. This widely supported protocol enables federated authentication between SaaS applications, like Syncplicity, and on-premise directory systems, such as Active Directory and LDAP. The key to SAML-based federated authentication is the intermediary server – often referred to as the Identity Provider (IdP). The IDP speaks the SAML 2.0 protocol and services actual authentication requests. In the context of this project, Syncplicity sees the API Gateway as the IDP, though in fact is is acting as an identity broker to one or more IDPs.
