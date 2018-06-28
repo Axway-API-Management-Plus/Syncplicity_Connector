@@ -1,0 +1,2279 @@
+<entityStoreData xmlns="http://www.vordel.com/2005/06/24/entityStore">
+<metaInfo flags="138">
+	<exportRoots>
+		<key type='XPathGroup'>
+			<id field='name' value='XPath Definitions'/>
+			<key type='XPathAttributeLocationGroup'>
+				<id field='name' value='Attribute Locations'/>
+				<key type='XPath'>
+					<id field='name' value='SAML AuthnRequest Consumer'/>
+				</key>
+			</key>
+		</key>
+		<key type='XPathGroup'>
+			<id field='name' value='XPath Definitions'/>
+			<key type='XPathRemoveNodeLocationGroup'>
+				<id field='name' value='Remove Node Locations'/>
+				<key type='XPath'>
+					<id field='name' value='SAML Assertion Issuer Format'/>
+				</key>
+			</key>
+		</key>
+		<key type='XPathGroup'>
+			<id field='name' value='XPath Definitions'/>
+			<key type='XPathTokenInsertionLocationGroup'>
+				<id field='name' value='Token Insertion Locations'/>
+				<key type='XPath'>
+					<id field='name' value='First SAML Response Encrypted Assertion'/>
+				</key>
+			</key>
+		</key>
+		<key type='XPathGroup'>
+			<id field='name' value='XPath Definitions'/>
+			<key type='XPathAttributeLocationGroup'>
+				<id field='name' value='Attribute Locations'/>
+				<key type='XPath'>
+					<id field='name' value='SAML AuthnRequest Provider Name'/>
+				</key>
+			</key>
+		</key>
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+			</key>
+		</key>
+		<key type='XPathGroup'>
+			<id field='name' value='XPath Definitions'/>
+			<key type='XPathSignatureInsertionLocationGroup'>
+				<id field='name' value='Signature Insertion Locations'/>
+				<key type='XPath'>
+					<id field='name' value='SAML Subject (Before) (SAML 2.0)'/>
+				</key>
+			</key>
+		</key>
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity Auth Policy'/>
+			</key>
+		</key>
+		<key type='XPathGroup'>
+			<id field='name' value='XPath Definitions'/>
+			<key type='XPathAttributeLocationGroup'>
+				<id field='name' value='Attribute Locations'/>
+				<key type='XPath'>
+					<id field='name' value='SAML AuthnRequest ID'/>
+				</key>
+			</key>
+		</key>
+		<key type='XPathGroup'>
+			<id field='name' value='XPath Definitions'/>
+			<key type='XPathSignGroup'>
+				<id field='name' value='Signing XPaths'/>
+				<key type='XPath'>
+					<id field='name' value='The First SAML 2.0 assertion'/>
+				</key>
+			</key>
+		</key>
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Logout'/>
+			</key>
+		</key>
+		<key type='ESConfiguration'>
+			<id field='name' value='Entity Store Configuration'/>
+		</key>
+	</exportRoots>
+	<typeVersions>
+		<type name="AttributeExtractLdapFilter" version="4"/>
+		<type name="AttributeExtractXPathFilter" version="2"/>
+		<type name="ChangeMessageFilter" version="0"/>
+		<type name="CircuitContainer" version="1"/>
+		<type name="CircuitDelegateFilter" version="1"/>
+		<type name="ConversionFilter" version="0"/>
+		<type name="CopyAttribute" version="0"/>
+		<type name="CopyAttributeFilter" version="1"/>
+		<type name="ESConfiguration" version="21"/>
+		<type name="Entity" version="0"/>
+		<type name="ExtractRESTAttributesFilter" version="2"/>
+		<type name="Filter" version="5"/>
+		<type name="FilterCircuit" version="4"/>
+		<type name="GenerateSignatureFilter" version="21"/>
+		<type name="HttpBaseFilter" version="4"/>
+		<type name="HttpBasicFilter" version="0"/>
+		<type name="InsertNodesFilter" version="1"/>
+		<type name="JavaScriptFilter" version="3"/>
+		<type name="KeyInfoFormat" version="3"/>
+		<type name="LdapSearchAttributes" version="2"/>
+		<type name="LdapSearchBase" version="2"/>
+		<type name="LookupAttribute" version="0"/>
+		<type name="NamedGroup" version="0"/>
+		<type name="NamedTopLevelGroup" version="0"/>
+		<type name="Reflector" version="0"/>
+		<type name="RemoveXMLNodeFilter" version="1"/>
+		<type name="RootChild" version="0"/>
+		<type name="SamlAuthNInsertFilter" version="0"/>
+		<type name="SamlInsertFilter" version="13"/>
+		<type name="SetAttributeFilter" version="0"/>
+		<type name="SetHTTPStatusCode" version="0"/>
+		<type name="SslFilter" version="0"/>
+		<type name="StringReplaceFilter" version="2"/>
+		<type name="XPath" version="1"/>
+		<type name="XPathAttributeLocationGroup" version="0"/>
+		<type name="XPathGroup" version="3"/>
+		<type name="XPathNamespace" version="0"/>
+		<type name="XPathRemoveNodeLocationGroup" version="0"/>
+		<type name="XPathSignGroup" version="4"/>
+		<type name="XPathSignatureInsertionLocationGroup" version="1"/>
+		<type name="XPathTokenInsertionLocationGroup" version="0"/>
+	</typeVersions>
+	<realizedTypes><![CDATA[
+<entityStoreData>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" abstract="true" extends="Entity" name="RootChild"/>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="RootChild" name="ESConfiguration">
+        <constant name="_version" type="integer" value="21"/>
+        <!--
+            Give this singleton a key.
+        -->
+        <field isKey="true" name="name" type="string"/>
+        <!-- 
+            We use this field to verify that the passphrase for the 
+            encryped data is synchronized between the server and client, and
+            between multiple invocations of the client
+        -->
+        <field name="passphraseTest" type="encrypted"/>
+        <field name="version" type="string"/>
+        <!-- The product key should never change for the lifetime of the product -->
+        <field name="productKey" type="string"/>
+        <field cardinality="?" name="gitrev" type="string"/>
+    </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="RootChild" name="CircuitContainer">
+    <constant name="_version" type="integer" value="1"/>
+    <componentType cardinality="*" name="FilterCircuit"/>
+    <componentType cardinality="*" name="CircuitContainer"/>
+    <componentType cardinality="*" name="MVProperty"/>
+    <field isKey="true" name="name" type="string"/>
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="RootChild" name="FilterCircuit">
+        <constant name="_version" type="integer" value="4"/>
+		<componentType cardinality="*" name="Filter"/>
+		<componentType cardinality="1" name="BoundCircuit"/>
+		<componentType cardinality="*" name="Property"/>
+		<field cardinality="1" name="start" type="@Filter"/>
+		<field cardinality="?" name="fault" type="@Filter"/>
+		<field isKey="true" name="name" type="string"/>
+		<field cardinality="1" default="3" name="logMask" type="integer"/>
+
+		<field cardinality="?" name="description" type="string"/>		
+		<field cardinality="1" name="category" type="@PolicyCategory">
+            <defaultRef>
+                <key type="PolicyCategoryGroup">
+                  <id field="name" value="Policy Categories"/>
+                  <key type="PolicyCategory">
+                      <id field="name" value="miscellaneous"/>
+                  </key>
+                </key>
+            </defaultRef>
+        </field>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" abstract="true" extends="RootChild" name="NamedTopLevelGroup">
+        <constant name="_version" type="integer" value="0"/>
+		<field isKey="true" name="name" type="string"/>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="NamedTopLevelGroup" name="XPathGroup">
+    <constant name="_version" type="integer" value="3"/>
+    <componentType cardinality="*" name="XPathAssertionLocationGroup"/>
+    <componentType cardinality="*" name="XPathSignatureLocationGroup"/>
+    <componentType cardinality="*" name="XPathAttributeLocationGroup"/>   
+    <componentType cardinality="*" name="XPathSubjectLocationGroup"/>   
+    <componentType cardinality="*" name="XPathContentCheckGroup"/>    
+    <componentType cardinality="*" name="XPathSchemaValidationGroup"/>    
+    <componentType cardinality="*" name="XPathDecryptionGroup"/>  
+    <componentType cardinality="*" name="XPathSignGroup"/>  
+    <componentType cardinality="*" name="XPathPredicateSignGroup"/> 
+    <componentType cardinality="*" name="XPathSignatureInsertionLocationGroup"/>
+    <componentType cardinality="*" name="XPathWSAddressingGroup"/>  
+    <componentType cardinality="*" name="XPathAddNodeLocationGroup"/>         
+    <componentType cardinality="*" name="XPathRemoveNodeLocationGroup"/>          
+    <componentType cardinality="*" name="XPathGSSTokenLocationGroup"/>   
+    <componentType cardinality="*" name="XPathTokenInsertionLocationGroup"/>      
+    <componentType cardinality="*" name="XPathMTOMIncludeGroup"/>      
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Entity" name="LdapSearchBase">
+        <constant name="_version" type="integer" value="2"/>
+            <field isKey="true" name="name" type="string"/>
+            <field cardinality="1" name="base" type="string"/>
+            <field cardinality="?" name="filter" type="string"/>
+            <field cardinality="1" default="1" name="scope" type="integer"/>
+    </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="LdapSearchBase" name="LdapSearchAttributes">
+        <constant name="_version" type="integer" value="2"/>
+       <field cardinality="1" default="1" name="uniqueFlag" type="boolean"/>
+    </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Entity" name="LookupAttribute">
+        <constant name="_version" type="integer" value="0"/>
+		<field isKey="true" name="name" type="string"/>
+		<field cardinality="1" default="" isKey="true" name="namespace" type="string"/>		
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" abstract="true" extends="Entity" name="NamedGroup">
+        <constant name="_version" type="integer" value="0"/>
+		<field isKey="true" name="name" type="string"/>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="NamedGroup" name="XPathSignatureInsertionLocationGroup">
+        <constant name="_version" type="integer" value="1"/>
+		<componentType cardinality="*" name="XPath"/>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="NamedGroup" name="XPathSignGroup">
+        <constant name="_version" type="integer" value="4"/>
+		<componentType cardinality="*" name="XPath"/>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="NamedGroup" name="XPathTokenInsertionLocationGroup">
+        <constant name="_version" type="integer" value="0"/>
+		<componentType cardinality="*" name="XPath"/>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="NamedGroup" name="XPathAttributeLocationGroup">
+        <constant name="_version" type="integer" value="0"/>
+		<componentType cardinality="*" name="XPath"/>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="NamedGroup" name="XPathRemoveNodeLocationGroup">
+        <constant name="_version" type="integer" value="0"/>
+		<componentType cardinality="*" name="XPath"/>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Entity" name="XPathNamespace">
+        <constant name="_version" type="integer" value="0"/>
+		<field isKey="true" name="prefix" type="string"/>
+		<field isKey="true" name="URI" type="string"/>		
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Entity" name="XPath">
+        <constant name="_version" type="integer" value="1"/>
+		<componentType cardinality="?" name="XPathNamespace"/>
+		<field isKey="true" name="name" type="string"/>
+		<field cardinality="1" name="xpath" type="string"/>
+		<field cardinality="1" default="element" name="encryptNodeType" type="string"/>			
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Entity" name="CopyAttribute">
+        <constant name="_version" type="integer" value="0"/>
+        <!-- Key fields -->
+        <field cardinality="1" isKey="true" name="fromAttributeName" type="string"/>   
+        <field cardinality="1" default="" isKey="true" name="fromAttributeNamespace" type="string"/>   
+        <field cardinality="1" default="" isKey="true" name="toAttributeName" type="string"/>   
+        <field cardinality="1" default="" isKey="true" name="toAttributeNamespace" type="string"/>
+        <!-- Other fields -->    
+        <field cardinality="?" name="attributeValue" type="string"/>
+        <field cardinality="1" default="1" name="fromAttributeLocation" type="integer"/>   
+        <field cardinality="1" default="1" name="toAttributeLocation" type="integer"/>           
+        <field cardinality="1" default="0" name="toListAttribute" type="boolean"/>          
+    </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Entity" name="KeyInfoFormat">
+        <constant name="_version" type="integer" value="3"/>
+		<field default="1" isKey="true" name="id" type="integer"/>  	
+		<field cardinality="1" default="2" name="certLocation" type="integer"/>  
+        <field cardinality="?" default="1" name="publicKeyInfoMask" type="integer"/> 
+        <field cardinality="?" name="keyNameValue" type="string"/>
+        <field cardinality="?" default="1" name="keyNameType" type="integer"/> 
+        <field cardinality="?" name="certAttachmentId" type="string"/> 
+		<field cardinality="?" default="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3" name="valueType" type="string"/>  
+		<field cardinality="1" default="1" name="strType" type="integer"/>
+		<field cardinality="?" default="attached" name="sctType" type="string"/>   
+		<field cardinality="1" default="0" name="includeTokenType" type="boolean"/>
+		<field cardinality="1" default="0" name="includeCertificateInBST" type="boolean"/>				
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" abstract="true" extends="Entity" name="Filter">
+        <constant name="_version" type="integer" value="5"/>
+        <field cardinality="?" name="successNode" type="@Filter"/>
+        <field cardinality="?" name="failureNode" type="@Filter"/>
+        <field isKey="true" name="name" type="string"/>
+        <field cardinality="1" default="2" name="logMask" type="integer"/>
+        <field cardinality="1" default="Filter aborted due to exception" name="logFatal" type="string"/>
+        <field cardinality="1" default="Filter failed" name="logFailure" type="string"/>
+        <field cardinality="1" default="Filter passed" name="logSuccess" type="string"/>
+        <field cardinality="1" name="category" type="@Category">
+            <defaultRef>
+                <key type="CategoryGroup">
+                  <id field="name" value="Filter Categories"/>
+                  <key type="Category">
+                      <id field="name" value="miscellaneous"/>
+                  </key>
+                </key>
+            </defaultRef>
+        </field>
+      <field cardinality="1" default="0" name="abortProcessingOnLogError" type="boolean"/>
+      <field cardinality="1" default="SERVICE" name="logMaskType" type="string"/>
+      <field cardinality="*" name="classloader" type="^ClassLoader"/>
+    </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Filter" name="SetAttributeFilter">
+        <constant name="_version" type="integer" value="0"/>
+  
+    <!-- Name of the Filter class that encapsulates this configuration entity -->
+    <constant name="class" type="string" value="com.vordel.circuit.attribute.SetAttributeFilter"/>
+    
+    <!-- List of the configuration parameters, their types, and their default values -->
+    <field cardinality="1" default="" name="messageAttribute" type="string"/>	
+    <field cardinality="1" default="" name="attributeValue" type="string"/>	
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" abstract="true" extends="Filter" name="InsertNodesFilter">
+    <constant name="_version" type="integer" value="1"/>
+    
+    <field cardinality="1" default="2" name="inserterType" type="integer"/>
+    
+    <field cardinality="1" default="append" name="whereToInsert" type="string"/>
+    
+    <field cardinality="?" default="##current##" name="actor" type="string"/> 
+    <field cardinality="?" default="0" name="rootOrSoapHeader" type="string"/>  
+    <field cardinality="?" name="xpath" type="^XPath"/> 
+    <field cardinality="1" default="append" name="xpathType" type="string"/> 
+    <field cardinality="?" name="messageAttribute" type="string"/>
+
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" abstract="true" extends="InsertNodesFilter" name="SamlInsertFilter">
+    
+    <constant name="_version" type="integer" value="13"/>
+    <componentType cardinality="1" name="KeyInfoFormat"/>
+    <field cardinality="1" default="1.1" name="wsVersion" type="string"/> 
+        
+    <field cardinality="1" default="0" name="lifeTime" type="long"/>
+    <field cardinality="1" default="0" name="driftTime" type="long"/>
+    <field cardinality="1" default="11" name="samlVersion" type="integer"/>
+    <field cardinality="?" name="issuerName" type="string"/>
+    <field cardinality="1" default="0" name="securityTokenType" type="integer"/>
+    <field cardinality="1" default="Sender Vouches" name="subjectConfirmationMethod" type="string"/>
+    
+    <field cardinality="1" default="0" name="readableFormat" type="boolean"/>     
+    <field cardinality="1" default="0" name="addAttributeStatement" type="boolean"/>
+    <field cardinality="1" default="Lax" name="layoutType" type="string"/>
+    
+    <!-- holder-of-key Subject Confirmation key type -->  
+    <field cardinality="1" default="none" name="keyType" type="string"/>    
+        
+    <!-- Asymmetric holder-of-key Subject Confirmation -->  
+    <field cardinality="1" default="certificateInStore" name="subjectConfirmationKeyType" type="string"/>  
+    <field cardinality="?" name="subjectConfirmationCert" type="^Certificate"/> 
+    <field cardinality="?" default="${certificate}" name="subjectConfirmationCertAttribute" type="string"/>  
+
+    <!-- Symmetric holder-of-key Subject Confirmation --> 
+  <field cardinality="1" default="generated" name="symmetricSigningKeyType" type="string"/>  
+  <field cardinality="?" default="symmetric.key" name="generatedSymmetricKeyAttribute" type="string"/>  
+    <field cardinality="?" default="${symmetric.key}" name="symmetricKeyAttribute" type="string"/> 
+  <field cardinality="1" default="certificateInStore" name="symmetricKeyEncryptionKeyType" type="string"/>   
+    <field cardinality="?" name="symmetricKeyEncryptionCert" type="^Certificate"/>  
+    <field cardinality="?" default="${certificate}" name="symmetricKeyEncryptionCertAttribute" type="string"/>                       
+    <field cardinality="1" default="256" name="hmacSymmetricKeyLen" type="integer"/>
+    <field cardinality="1" default="http://www.w3.org/2001/04/xmlenc#rsa-1_5" name="keyWrapAlgorithm" type="string"/>
+          
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="SamlInsertFilter" name="SamlAuthNInsertFilter">
+        <constant name="_version" type="integer" value="0"/>
+		<constant name="class" type="string" value="com.vordel.circuit.saml.SamlAuthNInsertFilter"/>								  				
+        <!-- Override the category to give it a different default -->
+        <field cardinality="1" name="category" type="@Category">
+          <defaultRef>
+            <key type="CategoryGroup">
+              <id field="name" value="Filter Categories"/>
+              <key type="Category">
+                <id field="name" value="authentication"/>
+              </key>
+            </key>
+          </defaultRef>
+        </field>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Filter" name="AttributeExtractLdapFilter">
+        <constant name="_version" type="integer" value="4"/>
+        <constant name="class" type="string" value="com.vordel.circuit.attribute.AttributeExtractLdapFilter"/>
+    <componentType cardinality="?" name="LdapSearchUniqueIdentity"/>
+    <componentType cardinality="1" name="LdapSearchAttributes"/>
+    <componentType cardinality="*" name="LookupAttribute"/>
+    <field cardinality="1" name="ldapDir" type="^LdapDirectory"/>
+    <field cardinality="?" default="${authentication.subject.id}" name="userIdentityAttribName" type="string"/>
+    <field cardinality="1" default="0" name="enablyLegacyAttrNaming" type="boolean"/>
+    <field cardinality="?" default="user" name="messageAttrPrefix" type="string"/>
+        <!-- Override the category to give it a different default -->
+        <field cardinality="1" name="category" type="@Category">
+            <defaultRef>
+                <key type="CategoryGroup">
+                  <id field="name" value="Filter Categories"/>
+                  <key type="Category">
+                      <id field="name" value="attribute"/>
+                  </key>
+                </key>
+            </defaultRef>
+        </field>
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Filter" name="StringReplaceFilter">
+    <constant name="_version" type="integer" value="2"/>
+    <constant name="class" type="string" value="com.vordel.circuit.string.StringReplaceFilter"/>
+    
+    <field cardinality="1" default="" name="sourceAttribute" type="string"/>
+    <field cardinality="1" default="" name="destAttribute" type="string"/>
+    <field cardinality="1" default="false" name="destAttributeOverride" type="boolean"/>
+	<field cardinality="1" default="" name="replacementString" type="string"/>
+    
+	<field cardinality="1" default="STRAIGHT_REPLACE" name="matchMode" type="string"/>
+		
+    <field cardinality="1" default="" name="straightMatchString" type="string"/>
+	<field cardinality="1" default="" name="regexMatchString" type="string"/>	
+
+	<field cardinality="1" default="MATCH_FIRST" name="matchBehaviour" type="string"/>
+    
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Filter" name="GenerateSignatureFilter">
+        <constant name="_version" type="integer" value="21"/>
+    <constant name="class" type="string" value="com.vordel.circuit.sig.GenerateSignatureFilter"/>
+        <componentType cardinality="1" name="KeyInfoFormat"/>
+    
+    <!-- Where to place signature -->   
+    <field cardinality="1" default="##current##" name="actor" type="string"/> 
+    <field cardinality="1" default="0" name="appendToRootOrSoapHeader" type="string"/> 
+    <field cardinality="?" name="sigLocationXPath" type="^XPath"/> 
+    <field cardinality="1" default="1" name="sigLocationType" type="integer"/> 
+    
+    <!-- What to sign --> 
+    <field cardinality="1" default="1" name="failIfNoNodes" type="boolean"/>    
+    <field cardinality="*" name="xpathPredicateWhatSign" type="^XPath"/> 
+    <field cardinality="1" default="wsu:Id" name="nodesToSignIdAttrName" type="string"/> 
+    <field cardinality="1" default="1" name="useSamlId" type="boolean"/> 
+    <field cardinality="1" default="0" name="strForSaml" type="boolean"/> 
+    <field cardinality="?" default="xpath" name="wsuIdHow" type="string"/> <!-- Enumeration of "xpath|elementSpecification|xpathLegacy" -->
+        <!-- One of wsuIdLocations or wsuIdXPath should be set, chosen from wsuIdHow" -->
+    <field cardinality="*" name="wsuIdElementSpecification" type="^ElementSpecifier"/>    
+    <field cardinality="*" name="wsuIdXPath" type="^XPath"/>
+    <field cardinality="1" default="0" name="extractNodesFromMessageAttribute" type="boolean"/> 
+    <field cardinality="1" default="${node.list}" name="extractNodeListAttributeName" type="string"/>
+    
+        <!-- Signing key type --> 
+        <field cardinality="1" default="asymmetric" name="keyType" type="string"/>    
+
+        <!-- Asymmetric --> 
+    <field cardinality="1" default="certificateInStore" name="signingKeyType" type="string"/>  
+        <field cardinality="?" name="signingCert" type="^Certificate"/> 
+        <field cardinality="?" default="${certificate}" name="signingCertAttribute" type="string"/>  
+
+        <!-- Symmetric -->  
+               
+    <field cardinality="1" default="generated" name="symmetricSigningKeyType" type="string"/>  
+        <field cardinality="?" default="symmetric.key" name="generatedSymmetricKeyAttribute" type="string"/> 
+        <field cardinality="?" default="${symmetric.key}" name="symmetricKeyAttribute" type="string"/>  
+    <field cardinality="1" default="1" name="includeSymmetricKeyInMessage" type="boolean"/> 
+    <field cardinality="1" default="certificateInStore" name="symmetricKeyEncryptionKeyType" type="string"/>   
+        <field cardinality="?" name="symmetricKeyEncryptionCert" type="^Certificate"/>  
+        <field cardinality="?" default="${certificate}" name="symmetricKeyEncryptionCertAttribute" type="string"/>                
+    <field cardinality="1" default="0" name="useDerivedKey" type="boolean"/>            
+        <field cardinality="1" default="256" name="hmacSymmetricKeyLen" type="integer"/>
+          
+    <!-- Algorithms -->             
+    <field cardinality="1" default="http://www.w3.org/2000/09/xmldsig#rsa-sha1" name="signatureMethod" type="string"/>
+        <field cardinality="1" default="http://www.w3.org/2000/09/xmldsig#sha1" name="digestAlgorithm" type="string"/>              
+        <field cardinality="1" default="http://www.w3.org/2001/04/xmlenc#rsa-1_5" name="keyWrapAlgorithm" type="string"/>
+          
+    <!-- Advanced -->             
+        <field cardinality="1" default="none" name="signatureConfirmationType" type="string"/>  
+        <field cardinality="1" default="0" name="specifyInclusiveNamespaces" type="boolean"/> 
+    <field cardinality="1" default="0" name="readableFormat" type="boolean"/> 
+    <field cardinality="?" name="attachmentTransform" type="string"/> 
+    <field cardinality="1" default="0" name="envelopedSignature" type="boolean"/>
+    <field cardinality="1" default="0" name="timestampType" type="integer"/> 
+        <field cardinality="1" default="0" name="timestampLifeTimeSecs" type="long"/>  
+    <field cardinality="1" default="0" name="additionalItemsToSign" type="integer"/> 
+    <field cardinality="1" default="Lax" name="layoutType" type="string"/>
+    <field cardinality="1" default="1" name="insertCarriedKeyName" type="boolean"/>
+    <field cardinality="1" default="1" name="includeTransforms" type="boolean"/>
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Filter" name="SslFilter">
+        <constant name="_version" type="integer" value="0"/>
+		<constant name="class" type="string" value="com.vordel.circuit.authn.SslFilter"/>
+        <field cardinality="1" name="category" type="@Category">
+          <defaultRef>
+            <key type="CategoryGroup">
+              <id field="name" value="Filter Categories"/>
+              <key type="Category">
+                <id field="name" value="authentication"/>
+              </key>
+            </key>
+          </defaultRef>
+        </field>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Filter" name="ExtractRESTAttributesFilter">
+    <constant name="_version" type="integer" value="2"/>
+    <constant name="class" type="string" value="com.vordel.circuit.attribute.ExtractRESTAttributesFilter"/>
+    <field cardinality="1" default="1" name="useHeaders" type="boolean"/>
+    <field cardinality="1" default="1" name="useQueryString" type="boolean"/>
+    <field cardinality="1" default="params.query" name="queryAttributePrefix" type="string"/>
+    <field cardinality="1" default="0" name="decode" type="boolean"/>
+    <field cardinality="1" name="category" type="@Category">
+      <defaultRef>
+        <key type="CategoryGroup">
+          <id field="name" value="Filter Categories"/>
+          <key type="Category">
+            <id field="name" value="attribute"/>
+          </key>
+        </key>
+      </defaultRef>
+    </field>
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Filter" name="CopyAttributeFilter">
+        <constant name="_version" type="integer" value="1"/>
+        <constant name="class" type="string" value="com.vordel.circuit.attribute.CopyAttributeFilter"/>    
+	    <componentType cardinality="+" name="CopyAttribute"/>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Filter" name="CircuitDelegateFilter">
+        <constant name="_version" type="integer" value="1"/>
+		<constant name="class" type="string" value="com.vordel.circuit.CircuitDelegateFilter"/>
+		<field cardinality="?" name="circuitPK" type="^FilterCircuit"/>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" abstract="true" extends="Filter" name="ConversionFilter">
+        <constant name="_version" type="integer" value="0"/>
+		<field cardinality="?" name="outputContentType" type="string"/> 
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="ConversionFilter" name="ChangeMessageFilter">
+        <constant name="_version" type="integer" value="0"/>
+		<constant name="class" type="string" value="com.vordel.circuit.conversion.ChangeMessageFilter"/>
+		<field cardinality="1" default="" name="body" type="string"/>	
+         </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Filter" name="RemoveXMLNodeFilter">
+        <constant name="_version" type="integer" value="1"/>
+		<constant name="class" type="string" value="com.vordel.circuit.conversion.RemoveXMLNodeFilter"/>
+		<field cardinality="1" name="nodeLocation" type="^XPath"/> 
+		<field cardinality="1" default="0" name="failIfNoNodesFound" type="boolean"/> 	
+		<field cardinality="1" default="0" name="savedDeletedNodes" type="boolean"/> 	
+    </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Filter" name="JavaScriptFilter">
+        <constant name="_version" type="integer" value="3"/>
+	<constant name="class" type="string" value="com.vordel.circuit.script.ScriptFilter"/>
+	<field cardinality="1" default="function invoke(msg)         {            return true;         }" name="script" type="string"/>
+	<field cardinality="1" default="nashorn" name="engineName" type="string"/>
+        <field cardinality="*" name="requiredProperties" type="string"/>
+        <field cardinality="*" name="generatedProperties" type="string"/>
+        <field cardinality="*" name="consumedProperties" type="string"/>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Filter" name="SetHTTPStatusCode">
+        <constant name="_version" type="integer" value="0"/>
+		<constant name="class" type="string" value="com.vordel.circuit.net.SetHTTPStatusFilter"/>
+        <field cardinality="1" default="200" name="httpResponseStatus" type="integer"/>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="SetHTTPStatusCode" name="Reflector">
+        <constant name="_version" type="integer" value="0"/>
+		<constant name="class" type="string" value="com.vordel.circuit.net.ReflectFilter"/>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Filter" name="AttributeExtractXPathFilter">
+        <constant name="_version" type="integer" value="2"/>
+		<constant name="class" type="string" value="com.vordel.circuit.attribute.AttributeExtractXPathFilter"/>
+		<field cardinality="1" name="attributeLocation" type="^XPath"/>
+		<field cardinality="1" name="attributeName" type="string"/>
+		<field cardinality="1" default="1" name="xpathInterpretation" type="integer"/>
+        <!-- Override the category to give it a different default -->
+        <field cardinality="1" name="category" type="@Category">
+            <defaultRef>
+                <key type="CategoryGroup">
+                  <id field="name" value="Filter Categories"/>
+                  <key type="Category">
+                      <id field="name" value="attribute"/>
+                  </key>
+                </key>
+            </defaultRef>
+        </field>	
+		<field cardinality="1" default="0" name="attributeInContentBody" type="boolean"/>	
+		<field cardinality="1" default="" name="contentType" type="string"/>		
+    </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" abstract="true" extends="Filter" name="HttpBaseFilter">
+        <constant name="_version" type="integer" value="4"/>
+        <field cardinality="1" name="credentialFormat" type="string"/>		
+        <field name="removeAuthNHeader" type="boolean"/> 
+        <field default="0" name="allowRetries" type="boolean"/> 
+        <field cardinality="1" name="repository" type="^AuthnRepositoryBase"/>
+        <!-- Override the category to give it a different default -->
+        <field cardinality="1" name="category" type="@Category">
+            <defaultRef>
+                <key type="CategoryGroup">
+                  <id field="name" value="Filter Categories"/>
+                  <key type="Category">
+                      <id field="name" value="authentication"/>
+                  </key>
+                </key>
+            </defaultRef>
+        </field>
+        
+        <!-- Invalid login attempts (default key is IP address-->
+        <field cardinality="1" default="0" name="lock" type="boolean"/>
+        <field cardinality="1" default="${http.request.clientaddr}" name="lockKey" type="string"/>     
+        <field cardinality="1" default="5" name="invalidAttempts" type="integer"/>
+        <field cardinality="1" default="1" name="timePeriod" type="string"/>    
+        <field cardinality="1" default="minute" name="timePeriodUnit" type="string"/> 
+        
+        <!-- Invalid login attempts with the ability to unlock after specified time period -->
+        <field cardinality="1" default="0" name="lockUser" type="boolean"/>       
+        <field cardinality="1" default="6" name="userInvalidAttempts" type="integer"/>
+        <field cardinality="1" default="5" name="userTimePeriod" type="string"/>    
+        <field cardinality="1" default="minute" name="userTimePeriodUnit" type="string"/> 
+        <field cardinality="1" default="30" name="lockTimePeriod" type="string"/>    
+        <field cardinality="1" default="minute" name="lockTimePeriodUnit" type="string"/> 
+        
+        <field cardinality="1" name="cacheToUse" type="^Cache">
+            <defaultRef>  
+                <key type="CacheManager">
+                    <id field="name" value="Cache Manager"/>
+                    <key type="Cache">
+                        <id field="name" value="Invalid Login Attempts"/>
+                    </key>
+                 </key>
+            </defaultRef>
+        </field>
+    </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="HttpBaseFilter" name="HttpBasicFilter">
+        <constant name="_version" type="integer" value="0"/>
+		<constant name="class" type="string" value="com.vordel.circuit.authn.HttpBasicFilter"/>	
+        <field cardinality="1" default="1" name="allowClientRetry" type="boolean"/>
+	</entityType>
+</entityStoreData>
+	]]></realizedTypes>
+</metaInfo>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPath">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathAttributeLocationGroup'>
+			<id field='name' value='Attribute Locations'/>
+		</key>
+	</key>
+	<fval name="encryptNodeType"><value>element</value></fval>
+	<fval name="name"><value>SAML AuthnRequest Consumer</value></fval>
+	<fval name="xpath"><value>/samlp:AuthnRequest/@AssertionConsumerServiceURL</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathNamespace">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathAttributeLocationGroup'>
+			<id field='name' value='Attribute Locations'/>
+			<key type='XPath'>
+				<id field='name' value='SAML AuthnRequest Consumer'/>
+			</key>
+		</key>
+	</key>
+	<fval name="URI"><value>urn:oasis:names:tc:SAML:2.0:protocol</value></fval>
+	<fval name="prefix"><value>samlp</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathNamespace">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathAttributeLocationGroup'>
+			<id field='name' value='Attribute Locations'/>
+			<key type='XPath'>
+				<id field='name' value='SAML AuthnRequest Consumer'/>
+			</key>
+		</key>
+	</key>
+	<fval name="URI"><value>urn:oasis:names:tc:SAML:2.0:assertion</value></fval>
+	<fval name="prefix"><value>saml</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathAttributeLocationGroup">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+	</key>
+	<fval name="name"><value>Attribute Locations</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathGroup">
+	<fval name="name"><value>XPath Definitions</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPath">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathRemoveNodeLocationGroup'>
+			<id field='name' value='Remove Node Locations'/>
+		</key>
+	</key>
+	<fval name="encryptNodeType"><value>element</value></fval>
+	<fval name="name"><value>SAML Assertion Issuer Format</value></fval>
+	<fval name="xpath"><value>//saml:Issuer/@Format</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathNamespace">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathRemoveNodeLocationGroup'>
+			<id field='name' value='Remove Node Locations'/>
+			<key type='XPath'>
+				<id field='name' value='SAML Assertion Issuer Format'/>
+			</key>
+		</key>
+	</key>
+	<fval name="URI"><value>urn:oasis:names:tc:SAML:2.0:assertion</value></fval>
+	<fval name="prefix"><value>saml</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathNamespace">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathRemoveNodeLocationGroup'>
+			<id field='name' value='Remove Node Locations'/>
+			<key type='XPath'>
+				<id field='name' value='SAML Assertion Issuer Format'/>
+			</key>
+		</key>
+	</key>
+	<fval name="URI"><value>urn:oasis:names:tc:SAML:2.0:protocol</value></fval>
+	<fval name="prefix"><value>samlp</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathRemoveNodeLocationGroup">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+	</key>
+	<fval name="name"><value>Remove Node Locations</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPath">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathTokenInsertionLocationGroup'>
+			<id field='name' value='Token Insertion Locations'/>
+		</key>
+	</key>
+	<fval name="encryptNodeType"><value>element</value></fval>
+	<fval name="name"><value>First SAML Response Encrypted Assertion</value></fval>
+	<fval name="xpath"><value>/samlp:Response/saml:EncryptedAssertion</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathNamespace">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathTokenInsertionLocationGroup'>
+			<id field='name' value='Token Insertion Locations'/>
+			<key type='XPath'>
+				<id field='name' value='First SAML Response Encrypted Assertion'/>
+			</key>
+		</key>
+	</key>
+	<fval name="URI"><value>urn:oasis:names:tc:SAML:2.0:protocol</value></fval>
+	<fval name="prefix"><value>samlp</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathNamespace">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathTokenInsertionLocationGroup'>
+			<id field='name' value='Token Insertion Locations'/>
+			<key type='XPath'>
+				<id field='name' value='First SAML Response Encrypted Assertion'/>
+			</key>
+		</key>
+	</key>
+	<fval name="URI"><value>urn:oasis:names:tc:SAML:2.0:assertion</value></fval>
+	<fval name="prefix"><value>saml</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathTokenInsertionLocationGroup">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+	</key>
+	<fval name="name"><value>Token Insertion Locations</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPath">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathAttributeLocationGroup'>
+			<id field='name' value='Attribute Locations'/>
+		</key>
+	</key>
+	<fval name="encryptNodeType"><value>element</value></fval>
+	<fval name="name"><value>SAML AuthnRequest Provider Name</value></fval>
+	<fval name="xpath"><value>/samlp:AuthnRequest/@ProviderName</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathNamespace">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathAttributeLocationGroup'>
+			<id field='name' value='Attribute Locations'/>
+			<key type='XPath'>
+				<id field='name' value='SAML AuthnRequest Provider Name'/>
+			</key>
+		</key>
+	</key>
+	<fval name="URI"><value>urn:oasis:names:tc:SAML:2.0:assertion</value></fval>
+	<fval name="prefix"><value>saml</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathNamespace">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathAttributeLocationGroup'>
+			<id field='name' value='Attribute Locations'/>
+			<key type='XPath'>
+				<id field='name' value='SAML AuthnRequest Provider Name'/>
+			</key>
+		</key>
+	</key>
+	<fval name="URI"><value>urn:oasis:names:tc:SAML:2.0:protocol</value></fval>
+	<fval name="prefix"><value>samlp</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="FilterCircuit">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+	</key>
+	<fval name="category"><value contentType="reference">
+		<key type='PolicyCategoryGroup'>
+			<id field='name' value='Policy Categories'/>
+			<key type='PolicyCategory'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="description"><value></value></fval>
+	<fval name="logMask"><value>3</value></fval>
+	<fval name="name"><value>Syncplicity SAML SSO Login</value></fval>
+	<fval name="start"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='ExtractRESTAttributesFilter'>
+					<id field='name' value='Extract REST Request Attributes'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ChangeMessageFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="body"><value>${saml.authnrequest.decoded}</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="logFailure"><value>Failed in setting the message</value></fval>
+	<fval name="logFatal"><value>Error in setting the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Success in setting the message</value></fval>
+	<fval name="name"><value>Set Decoded SAML as Message Body</value></fval>
+	<fval name="outputContentType"><value>application/xml</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='AttributeExtractXPathFilter'>
+					<id field='name' value='Retrieve from message : Request Consumer URL'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SetAttributeFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="attributeValue"><value>${saml.library.encodeSamlResponse(saml.response.decoded)}</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="logFailure"><value>Failed to set the attribute value</value></fval>
+	<fval name="logFatal"><value>Error while setting the attribute value. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Set the attribute value</value></fval>
+	<fval name="messageAttribute"><value>saml.response.encoded</value></fval>
+	<fval name="name"><value>Set Attribute Filter : Encode Saml Response</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='ChangeMessageFilter'>
+					<id field='name' value='Set Message : Generate Html Form'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ChangeMessageFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="body"><value>${samlTokenMod}</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="logFailure"><value>Failed in setting the message</value></fval>
+	<fval name="logFatal"><value>Error in setting the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Success in setting the message</value></fval>
+	<fval name="name"><value>Set Modded SAML Message</value></fval>
+	<fval name="outputContentType"><value>text/xml; charset=&quot;UTF-8&quot;</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='GenerateSignatureFilter'>
+					<id field='name' value='XML Signature Generation : Sign Saml Assertion'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ChangeMessageFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="body"><value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;&#xD;&#xA;&lt;samlp:Response&#xD;&#xA;&#x9;xmlns:samlp=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot;&#xD;&#xA;&#x9;xmlns:saml=&quot;urn:oasis:names:tc:SAML:2.0:assertion&quot;&#xD;&#xA;&#xD;&#xA;&#x9;IssueInstant=&quot;${saml.response.issueinstant}&quot;&#xD;&#xA;&#x9;ID=&quot;${saml.response.id}&quot;&#xD;&#xA;&#x9;Version=&quot;2.0&quot;&#xD;&#xA;&#xD;&#xA;&#x9;Destination=&quot;${saml.authnrequest.consumer}&quot;&#xD;&#xA;&#x9;InResponseTo=&quot;${saml.authnrequest.id}&quot;&gt;&#xD;&#xA;&#x9;&lt;saml:Issuer&gt;${saml.authnrequest.providername}&lt;/saml:Issuer&gt;&#xD;&#xA;&#x9;&lt;samlp:Status&gt;&#xD;&#xA;&#x9;&#x9;&lt;samlp:StatusCode Value=&quot;${saml.response.status}&quot; /&gt;&#xD;&#xA;&#x9;&lt;/samlp:Status&gt;&#xD;&#xA;${samltoken}&#xD;&#xA;&lt;/samlp:Response&gt;&#xD;&#xA;</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="logFailure"><value>Failed in setting the message</value></fval>
+	<fval name="logFatal"><value>Error in setting the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Success in setting the message</value></fval>
+	<fval name="name"><value>Set Message : Generate Empty Response</value></fval>
+	<fval name="outputContentType"><value>text/xml; charset=&quot;UTF-8&quot;</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='RemoveXMLNodeFilter'>
+					<id field='name' value='Remove XML Node : Remove Issuer Format'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SetAttributeFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="attributeValue"><value>urn:oasis:names:tc:SAML:2.0:status:Success</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="logFailure"><value>Failed to set the attribute value</value></fval>
+	<fval name="logFatal"><value>Error while setting the attribute value. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Set the attribute value</value></fval>
+	<fval name="messageAttribute"><value>saml.response.status</value></fval>
+	<fval name="name"><value>Set Attribute Filter : Set Success Status</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='SamlAuthNInsertFilter'>
+					<id field='name' value='Insert SAML Authentication Assertion (wrapped)'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SetAttributeFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="attributeValue"><value>${content.body}</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="logFailure"><value>Failed to set the attribute value</value></fval>
+	<fval name="logFatal"><value>Error while setting the attribute value. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Set the attribute value</value></fval>
+	<fval name="messageAttribute"><value>samlTokenMod</value></fval>
+	<fval name="name"><value>Create SAML Token Mod Attribute</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='StringReplaceFilter'>
+					<id field='name' value='Change NameID Namespace'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="StringReplaceFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="destAttribute"><value></value></fval>
+	<fval name="destAttributeOverride"><value>0</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="matchBehaviour"><value>MATCH_FIRST</value></fval>
+	<fval name="matchMode"><value>STRAIGHT_REPLACE</value></fval>
+	<fval name="name"><value>Change mail attribute namespace</value></fval>
+	<fval name="regexMatchString"><value></value></fval>
+	<fval name="replacementString"><value>&quot;http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress&quot;</value></fval>
+	<fval name="sourceAttribute"><value>samlTokenMod</value></fval>
+	<fval name="straightMatchString"><value>&quot;mail&quot;</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='ChangeMessageFilter'>
+					<id field='name' value='Set Modded SAML Message'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AttributeExtractXPathFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="attributeInContentBody"><value>0</value></fval>
+	<fval name="attributeLocation"><value contentType="reference">
+<key type='XPathGroup'><id field='name' value='XPath Definitions'/><key type='XPathAttributeLocationGroup'><id field='name' value='Attribute Locations'/><key type='XPath'><id field='name' value='SAML AuthnRequest ID'/></key></key></key>	</value></fval>
+	<fval name="attributeName"><value>saml.authnrequest.id</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='attribute'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="contentType"><value></value></fval>
+	<fval name="logFailure"><value>Failed to extract attributes via XPath</value></fval>
+	<fval name="logFatal"><value>Error occurred while extracting attributes via XPath. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Extracted attribute from message via XPath</value></fval>
+	<fval name="name"><value>Retrieve from message : SAML AuthNRequest ID</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='AttributeExtractXPathFilter'>
+					<id field='name' value='Retrieve from message : SAML AuthNRequest Provider Name'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="xpathInterpretation"><value>1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="Reflector">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="httpResponseStatus"><value>200</value></fval>
+	<fval name="logFailure"><value>Failed to echo back the message</value></fval>
+	<fval name="logFatal"><value>Error occurred while echoing the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Successfully echoed back the message</value></fval>
+	<fval name="name"><value>Reflect Message</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SetAttributeFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="attributeValue"><value>${content.body}</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="logFailure"><value>Failed to set the attribute value</value></fval>
+	<fval name="logFatal"><value>Error while setting the attribute value. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Set the attribute value</value></fval>
+	<fval name="messageAttribute"><value>saml.response.decoded</value></fval>
+	<fval name="name"><value>Set Attribute Filter : Convert Saml Response to string</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='SetAttributeFilter'>
+					<id field='name' value='Set Attribute Filter : Encode Saml Response'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ChangeMessageFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="body"><value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xD;&#xA;&lt;!DOCTYPE html&gt;&#xD;&#xA;&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&#xD;&#xA;&#x9;&lt;head&gt;&#xD;&#xA;&#x9;&#x9;&lt;title&gt;SAML POST AuthNRequest&lt;/title&gt;&#xD;&#xA;&#x9;&#x9;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;application/xhtml+xml&quot; /&gt;&#xD;&#xA;&#x9;&#x9;&lt;style media=&quot;screen&quot; type=&quot;text/css&quot;&gt;&#xD;&#xA;.autoForward {&#xD;&#xA;    display: none;&#xD;&#xA;}&#xD;&#xA;&#x9;&#x9;&lt;/style&gt;&#xD;&#xA;&#x9;&lt;/head&gt;&#xD;&#xA;&lt;body&gt;&#xD;&#xA;&#x9;&lt;div id=&quot;hideMe&quot;&gt;&#xD;&#xA;&#x9;&#x9;&lt;script type=&quot;text/javascript&quot;&gt;//document.getElementById(&quot;hideMe&quot;).className = &quot;autoForward&quot;;&lt;/script&gt;&#xD;&#xA;&#x9;&#x9;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; If you are not redirected, you must press the Continue button once to proceed.&lt;/p&gt;&#xD;&#xA;&#x9;&#x9;&lt;form method=&quot;post&quot; action=&quot;${saml.authnrequest.consumer}&quot;&gt;&#xD;&#xA;&#x9;&#x9;&#x9;&lt;div&gt;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&lt;input type=&quot;hidden&quot; name=&quot;SAMLResponse&quot; value=&quot;${saml.response.encoded}&quot; /&gt;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;${saml.library.generateRelayStateTag(saml.authnrequest.relaystate)}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&lt;input type=&quot;submit&quot; value=&quot;Continue&quot; /&gt;&#xD;&#xA;&#x9;&#x9;&#x9;&lt;/div&gt;&#xD;&#xA;&#x9;&#x9;&lt;/form&gt;&#xD;&#xA;&#x9;&#x9;&lt;script type=&quot;text/javascript&quot;&gt;//document.forms[0].submit();&lt;/script&gt;&#xD;&#xA;&#x9;&lt;/div&gt;&#xD;&#xA;&lt;/body&gt;&#xD;&#xA;&lt;/html&gt;&#xD;&#xA;</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="logFailure"><value>Failed in setting the message</value></fval>
+	<fval name="logFatal"><value>Error in setting the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Success in setting the message</value></fval>
+	<fval name="name"><value>Set Message : Generate Html Form</value></fval>
+	<fval name="outputContentType"><value>text/html; charset=&quot;UTF-8&quot;</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='Reflector'>
+					<id field='name' value='Reflect Message'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AttributeExtractXPathFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="attributeInContentBody"><value>0</value></fval>
+	<fval name="attributeLocation"><value contentType="reference">
+<key type='XPathGroup'><id field='name' value='XPath Definitions'/><key type='XPathAttributeLocationGroup'><id field='name' value='Attribute Locations'/><key type='XPath'><id field='name' value='SAML AuthnRequest Consumer'/></key></key></key>	</value></fval>
+	<fval name="attributeName"><value>saml.authnrequest.consumer</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='attribute'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="contentType"><value></value></fval>
+	<fval name="logFailure"><value>Failed to extract attributes via XPath</value></fval>
+	<fval name="logFatal"><value>Error occurred while extracting attributes via XPath. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Extracted attribute from message via XPath</value></fval>
+	<fval name="name"><value>Retrieve from message : Request Consumer URL</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='AttributeExtractXPathFilter'>
+					<id field='name' value='Retrieve from message : SAML AuthNRequest ID'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="xpathInterpretation"><value>1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CopyAttributeFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="logFailure"><value>Failed to copy attributes</value></fval>
+	<fval name="logFatal"><value>Error occurred while copying attributes. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Copied attributes successfully</value></fval>
+	<fval name="name"><value>Copy / Modify Attributes : Generate SAML ID and Issue Instant</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='SetAttributeFilter'>
+					<id field='name' value='Set Attribute Filter : Set Success Status'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CopyAttribute">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+			<key type='CopyAttributeFilter'>
+				<id field='name' value='Copy / Modify Attributes : Generate SAML ID and Issue Instant'/>
+			</key>
+		</key>
+	</key>
+	<fval name="attributeValue"><value>${saml.library.generateIssueInstant()}</value></fval>
+	<fval name="fromAttributeLocation"><value>3</value></fval>
+	<fval name="fromAttributeName"><value></value></fval>
+	<fval name="fromAttributeNamespace"><value></value></fval>
+	<fval name="toAttributeLocation"><value>1</value></fval>
+	<fval name="toAttributeName"><value>saml.response.issueinstant</value></fval>
+	<fval name="toAttributeNamespace"><value></value></fval>
+	<fval name="toListAttribute"><value>0</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CopyAttribute">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+			<key type='CopyAttributeFilter'>
+				<id field='name' value='Copy / Modify Attributes : Generate SAML ID and Issue Instant'/>
+			</key>
+		</key>
+	</key>
+	<fval name="attributeValue"><value>${saml.library.generateSamlId()}</value></fval>
+	<fval name="fromAttributeLocation"><value>3</value></fval>
+	<fval name="fromAttributeName"><value></value></fval>
+	<fval name="fromAttributeNamespace"><value></value></fval>
+	<fval name="toAttributeLocation"><value>1</value></fval>
+	<fval name="toAttributeName"><value>saml.response.id</value></fval>
+	<fval name="toAttributeNamespace"><value></value></fval>
+	<fval name="toListAttribute"><value>0</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SetAttributeFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="attributeValue"><value>${saml.library.decodeAuthNRequest(http.querystring.SAMLRequest)}</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="logFailure"><value>Failed to set the attribute value</value></fval>
+	<fval name="logFatal"><value>Error while setting the attribute value. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Set the attribute value</value></fval>
+	<fval name="messageAttribute"><value>saml.authnrequest.decoded</value></fval>
+	<fval name="name"><value>Decode SAMLRequest Header from Syncplicity</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='ChangeMessageFilter'>
+					<id field='name' value='Set Decoded SAML as Message Body'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SamlAuthNInsertFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="actor"><value>##current##</value></fval>
+	<fval name="addAttributeStatement"><value>1</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='authentication'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="driftTime"><value>15</value></fval>
+	<fval name="generatedSymmetricKeyAttribute"><value>symmetric.key</value></fval>
+	<fval name="hmacSymmetricKeyLen"><value>256</value></fval>
+	<fval name="inserterType"><value>4</value></fval>
+	<fval name="issuerName"><value>${saml.authnrequest.providername}</value></fval>
+	<fval name="keyType"><value>none</value></fval>
+	<fval name="keyWrapAlgorithm"><value>http://www.w3.org/2001/04/xmlenc#rsa-1_5</value></fval>
+	<fval name="layoutType"><value>Lax</value></fval>
+	<fval name="lifeTime"><value>3600</value></fval>
+	<fval name="logFailure"><value>Failed to insert SAML authentication assertion</value></fval>
+	<fval name="logFatal"><value>Error during SAML authentication assertion insertion. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Inserted SAML authentication assertion</value></fval>
+	<fval name="messageAttribute"><value>samltoken</value></fval>
+	<fval name="name"><value>Insert SAML Authentication Assertion (wrapped)</value></fval>
+	<fval name="readableFormat"><value>0</value></fval>
+	<fval name="rootOrSoapHeader"><value>0</value></fval>
+	<fval name="samlVersion"><value>20</value></fval>
+	<fval name="securityTokenType"><value>0</value></fval>
+	<fval name="subjectConfirmationCert"><value contentType="reference">-1</value></fval>
+	<fval name="subjectConfirmationCertAttribute"><value></value></fval>
+	<fval name="subjectConfirmationKeyType"><value>certificateInStore</value></fval>
+	<fval name="subjectConfirmationMethod"><value>Bearer</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='ChangeMessageFilter'>
+					<id field='name' value='Set Message : Generate Empty Response'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="symmetricKeyAttribute"><value></value></fval>
+	<fval name="symmetricKeyEncryptionCert"><value contentType="reference">-1</value></fval>
+	<fval name="symmetricKeyEncryptionCertAttribute"><value></value></fval>
+	<fval name="symmetricKeyEncryptionKeyType"><value>certificateInStore</value></fval>
+	<fval name="symmetricSigningKeyType"><value>generated</value></fval>
+	<fval name="whereToInsert"><value>append</value></fval>
+	<fval name="wsVersion"><value>1.1</value></fval>
+	<fval name="xpath"><value contentType="reference">
+<key type='XPathGroup'><id field='name' value='XPath Definitions'/><key type='XPathTokenInsertionLocationGroup'><id field='name' value='Token Insertion Locations'/><key type='XPath'><id field='name' value='First SAML Response Encrypted Assertion'/></key></key></key>	</value></fval>
+	<fval name="xpathType"><value>append</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KeyInfoFormat">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+			<key type='SamlAuthNInsertFilter'>
+				<id field='name' value='Insert SAML Authentication Assertion (wrapped)'/>
+			</key>
+		</key>
+	</key>
+	<fval name="certAttachmentId"><value></value></fval>
+	<fval name="certLocation"><value>2</value></fval>
+	<fval name="id"><value>1</value></fval>
+	<fval name="includeCertificateInBST"><value>0</value></fval>
+	<fval name="includeTokenType"><value>0</value></fval>
+	<fval name="keyNameType"></fval>
+	<fval name="keyNameValue"><value></value></fval>
+	<fval name="publicKeyInfoMask"><value>1</value></fval>
+	<fval name="sctType"></fval>
+	<fval name="strType"><value>1</value></fval>
+	<fval name="valueType"><value>http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="GenerateSignatureFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="actor"><value></value></fval>
+	<fval name="additionalItemsToSign"><value>0</value></fval>
+	<fval name="appendToRootOrSoapHeader"><value>0</value></fval>
+	<fval name="attachmentTransform"><value></value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="digestAlgorithm"><value>http://www.w3.org/2000/09/xmldsig#sha1</value></fval>
+	<fval name="envelopedSignature"><value>1</value></fval>
+	<fval name="extractNodeListAttributeName"><value></value></fval>
+	<fval name="extractNodesFromMessageAttribute"><value>0</value></fval>
+	<fval name="failIfNoNodes"><value>1</value></fval>
+	<fval name="generatedSymmetricKeyAttribute"><value>symmetric.key</value></fval>
+	<fval name="hmacSymmetricKeyLen"><value>256</value></fval>
+	<fval name="includeSymmetricKeyInMessage"><value>1</value></fval>
+	<fval name="includeTransforms"><value>1</value></fval>
+	<fval name="insertCarriedKeyName"><value>1</value></fval>
+	<fval name="keyType"><value>asymmetric</value></fval>
+	<fval name="keyWrapAlgorithm"><value>http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p</value></fval>
+	<fval name="layoutType"><value>Lax</value></fval>
+	<fval name="logFailure"><value>Failed to sign message</value></fval>
+	<fval name="logFatal"><value>Error during message signing. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Signed message successfully</value></fval>
+	<fval name="name"><value>XML Signature Generation : Sign Saml Assertion</value></fval>
+	<fval name="nodesToSignIdAttrName"><value>ID</value></fval>
+	<fval name="readableFormat"><value>0</value></fval>
+	<fval name="sigLocationType"><value>2</value></fval>
+	<fval name="sigLocationXPath"><value contentType="reference">
+<key type='XPathGroup'><id field='name' value='XPath Definitions'/><key type='XPathSignatureInsertionLocationGroup'><id field='name' value='Signature Insertion Locations'/><key type='XPath'><id field='name' value='SAML Subject (Before) (SAML 2.0)'/></key></key></key>	</value></fval>
+	<fval name="signatureConfirmationType"><value>none</value></fval>
+	<fval name="signatureMethod"><value>http://www.w3.org/2000/09/xmldsig#rsa-sha1</value></fval>
+	<fval name="signingCert"><value contentType="reference">
+<key type='Certificates'><id field='name' value='Certificate Store'/><key type='Certificate'><id field='dname' value='CN=*.demo.axway.com,OU=Axway IT,O=Axway Inc.,L=Phoenix,ST=Arizona,C=US 2017'/></key></key>	</value></fval>
+	<fval name="signingCertAttribute"><value></value></fval>
+	<fval name="signingKeyType"><value>certificateInStore</value></fval>
+	<fval name="specifyInclusiveNamespaces"><value>0</value></fval>
+	<fval name="strForSaml"><value>0</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='SetAttributeFilter'>
+					<id field='name' value='Set Attribute Filter : Convert Saml Response to string'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="symmetricKeyAttribute"><value></value></fval>
+	<fval name="symmetricKeyEncryptionCert"><value contentType="reference">-1</value></fval>
+	<fval name="symmetricKeyEncryptionCertAttribute"><value></value></fval>
+	<fval name="symmetricKeyEncryptionKeyType"><value>certificateInStore</value></fval>
+	<fval name="symmetricSigningKeyType"><value>generated</value></fval>
+	<fval name="timestampLifeTimeSecs"><value>0</value></fval>
+	<fval name="timestampType"><value>0</value></fval>
+	<fval name="useDerivedKey"><value>0</value></fval>
+	<fval name="useSamlId"><value>1</value></fval>
+	<fval name="wsuIdElementSpecification"><value contentType="reference">-1</value></fval>
+	<fval name="wsuIdHow"><value>xpath</value></fval>
+	<fval name="wsuIdXPath"><value contentType="reference">
+<key type='XPathGroup'><id field='name' value='XPath Definitions'/><key type='XPathSignGroup'><id field='name' value='Signing XPaths'/><key type='XPath'><id field='name' value='The First SAML 2.0 assertion'/></key></key></key>	</value></fval>
+	<fval name="xpathPredicateWhatSign"><value contentType="reference">-1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KeyInfoFormat">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+			<key type='GenerateSignatureFilter'>
+				<id field='name' value='XML Signature Generation : Sign Saml Assertion'/>
+			</key>
+		</key>
+	</key>
+	<fval name="certAttachmentId"><value></value></fval>
+	<fval name="certLocation"><value>2</value></fval>
+	<fval name="id"><value>1</value></fval>
+	<fval name="includeCertificateInBST"><value>0</value></fval>
+	<fval name="includeTokenType"><value>0</value></fval>
+	<fval name="keyNameType"></fval>
+	<fval name="keyNameValue"><value></value></fval>
+	<fval name="publicKeyInfoMask"><value>1</value></fval>
+	<fval name="sctType"></fval>
+	<fval name="strType"><value>1</value></fval>
+	<fval name="valueType"><value>http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="StringReplaceFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="destAttribute"><value></value></fval>
+	<fval name="destAttributeOverride"><value>0</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="matchBehaviour"><value>MATCH_FIRST</value></fval>
+	<fval name="matchMode"><value>STRAIGHT_REPLACE</value></fval>
+	<fval name="name"><value>Add email domain to Alex</value></fval>
+	<fval name="regexMatchString"><value></value></fval>
+	<fval name="replacementString"><value>&gt;alex@demo.axway.com&lt;</value></fval>
+	<fval name="sourceAttribute"><value>samlTokenMod</value></fval>
+	<fval name="straightMatchString"><value>&gt;alex&lt;</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='StringReplaceFilter'>
+					<id field='name' value='Change mail attribute namespace'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ExtractRESTAttributesFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='attribute'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="decode"><value>0</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="name"><value>Extract REST Request Attributes</value></fval>
+	<fval name="queryAttributePrefix"><value>params.query</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='CircuitDelegateFilter'>
+					<id field='name' value='Call Syncplicity Auth Policy'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="useHeaders"><value>1</value></fval>
+	<fval name="useQueryString"><value>1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CircuitDelegateFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="circuitPK"><value contentType="reference">
+<key type='CircuitContainer'><id field='name' value='Syncplicity'/><key type='FilterCircuit'><id field='name' value='Syncplicity Auth Policy'/></key></key>	</value></fval>
+	<fval name="logFailure"><value>Failed in calling policy shortcut</value></fval>
+	<fval name="logFatal"><value>Error in calling policy shortcut circuit. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Success in calling policy shortcut</value></fval>
+	<fval name="name"><value>Call Syncplicity Auth Policy</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='JavaScriptFilter'>
+					<id field='name' value='Scripting Language : Setup SAML Selectors'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AttributeExtractXPathFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="attributeInContentBody"><value>0</value></fval>
+	<fval name="attributeLocation"><value contentType="reference">
+<key type='XPathGroup'><id field='name' value='XPath Definitions'/><key type='XPathAttributeLocationGroup'><id field='name' value='Attribute Locations'/><key type='XPath'><id field='name' value='SAML AuthnRequest Provider Name'/></key></key></key>	</value></fval>
+	<fval name="attributeName"><value>saml.authnrequest.providername</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='attribute'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="contentType"><value></value></fval>
+	<fval name="logFailure"><value>Failed to extract attributes via XPath</value></fval>
+	<fval name="logFatal"><value>Error occurred while extracting attributes via XPath. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Extracted attribute from message via XPath</value></fval>
+	<fval name="name"><value>Retrieve from message : SAML AuthNRequest Provider Name</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='CopyAttributeFilter'>
+					<id field='name' value='Copy / Modify Attributes : Retrieve Form Parameters'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="xpathInterpretation"><value>1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="consumedProperties"></fval>
+	<fval name="engineName"><value>groovy</value></fval>
+	<fval name="generatedProperties">
+		<value>saml.library</value>
+		<value>saml.library.generateIssueInstant</value>
+		<value>saml.library.generateSamlId</value>
+		<value>saml.library.generateRelayStateTag</value>
+		<value>saml.library.encodeAuthNRequest</value>
+		<value>saml.library.decodeAuthNRequest</value>
+		<value>saml.library.encodeSamlResponse</value>
+		<value>saml.library.decodeSamlResponse</value>
+		<value>saml.library.isNullValue</value>
+		<value>saml.library.isEmptyString</value>
+		<value>saml.library.hasPendingException</value>
+		<value>saml.library.unwrapAssertions</value>
+	</fval>
+	<fval name="logFailure"><value>Failed script filter</value></fval>
+	<fval name="logFatal"><value>Error while attempt to run script filter. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Passed script filter</value></fval>
+	<fval name="name"><value>Scripting Language : Setup SAML Selectors</value></fval>
+	<fval name="requiredProperties"></fval>
+	<fval name="script"><value>import java.io.IOException&#xD;&#xA;import java.text.SimpleDateFormat&#xD;&#xA;import java.util.zip.Deflater&#xD;&#xA;import java.util.zip.DeflaterOutputStream&#xD;&#xA;import java.util.zip.Inflater&#xD;&#xA;import java.util.zip.InflaterOutputStream&#xD;&#xA;import java.util.zip.ZipException&#xD;&#xA;&#xD;&#xA;import javax.xml.bind.DatatypeConverter&#xD;&#xA;&#xD;&#xA;import org.w3c.dom.Document&#xD;&#xA;import org.w3c.dom.Element&#xD;&#xA;import org.w3c.dom.Node&#xD;&#xA;import org.w3c.dom.NodeList&#xD;&#xA;&#xD;&#xA;import com.vordel.circuit.CircuitAbortException&#xD;&#xA;import com.vordel.circuit.Message&#xD;&#xA;import com.vordel.mime.XMLBody&#xD;&#xA;&#xD;&#xA;boolean invoke(Message msg) {&#xD;&#xA;&#x9;if (!msg.containsKey(&quot;saml.library&quot;)) {&#xD;&#xA;&#x9;&#x9;msg.put(&quot;saml.library&quot;, new SamlSelectors(msg));&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;public class SamlSelectors {&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * Date format for Saml Issue Instant&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private final SimpleDateFormat dateFormat;&#xD;&#xA;&#x9;private final Message msg;&#xD;&#xA;&#xD;&#xA;&#x9;public SamlSelectors(Message msg) {&#xD;&#xA;&#x9;&#x9;SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd&apos;T&apos;HH:mm:ss&apos;Z&apos;&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;/* set the XML date format timezone */&#xD;&#xA;&#x9;&#x9;dateFormat.setTimeZone(TimeZone.getTimeZone(&quot;UTC&quot;));&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.dateFormat = dateFormat;&#xD;&#xA;&#x9;&#x9;this.msg = msg;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;private void storeException(CircuitAbortException cause) {&#xD;&#xA;&#x9;&#x9;if (cause != null) {&#xD;&#xA;&#x9;&#x9;&#x9;msg.put(&quot;circuit.exception&quot;, cause);&#xD;&#xA;&#x9;&#x9;&#x9;msg.put(&quot;circuit.failure.reason&quot;, cause.getMessage());&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;public boolean hasPendingException() {&#xD;&#xA;&#x9;&#x9;Object exception = msg.get(&quot;circuit.exception&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return exception instanceof CircuitAbortException;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;private String encodeSamlMessage(String decoded, boolean deflate) throws CircuitAbortException {&#xD;&#xA;&#x9;&#x9;ByteArrayOutputStream deflated = new ByteArrayOutputStream();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#x9;&#x9;&#x9;OutputStream output = deflated;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;if (deflate) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Deflater deflater = new Deflater(Deflater.DEFAULT_COMPRESSION, true);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;output = new DeflaterOutputStream(deflated, deflater);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;try {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;output.write(decoded.getBytes(&quot;UTF-8&quot;));&#xD;&#xA;&#x9;&#x9;&#x9;} finally {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;output.close();&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;} catch (UnsupportedEncodingException e) {&#xD;&#xA;&#x9;&#x9;&#x9;throw new CircuitAbortException(&quot;UTF-8 is not supported&quot;, e);&#xD;&#xA;&#x9;&#x9;} catch (IOException e) {&#xD;&#xA;&#x9;&#x9;&#x9;throw new CircuitAbortException(&quot;Unable to encode message&quot;, e);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;/* convert the output to a byte array and encode it using base 64 */&#xD;&#xA;&#x9;&#x9;return DatatypeConverter.printBase64Binary(deflated.toByteArray());&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;private String decodeSamlMessage(String encoded, boolean inflate) throws CircuitAbortException {&#xD;&#xA;&#x9;&#x9;ByteArrayOutputStream inflated = new ByteArrayOutputStream();&#xD;&#xA;&#x9;&#x9;String decoded = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#x9;&#x9;&#x9;byte[] input = DatatypeConverter.parseBase64Binary(encoded);&#xD;&#xA;&#x9;&#x9;&#x9;OutputStream output = inflated;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;if (inflate) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Inflater inflater = new Inflater(true);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;output = new InflaterOutputStream(inflated, inflater);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;try {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;output.write(input);&#xD;&#xA;&#x9;&#x9;&#x9;} catch (ZipException e) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;inflated.reset();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;inflated.write(input);&#xD;&#xA;&#x9;&#x9;&#x9;} finally {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;output.close();&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;/* convert the output to string */&#xD;&#xA;&#x9;&#x9;&#x9;decoded = new String(inflated.toByteArray(), &quot;UTF-8&quot;);&#xD;&#xA;&#x9;&#x9;} catch (UnsupportedEncodingException e) {&#xD;&#xA;&#x9;&#x9;&#x9;throw new CircuitAbortException(&quot;UTF-8 is not supported&quot;, e);&#xD;&#xA;&#x9;&#x9;} catch (IOException e) {&#xD;&#xA;&#x9;&#x9;&#x9;throw new CircuitAbortException(&quot;Unable to decode message&quot;, e);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return decoded;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;public String generateIssueInstant() {&#xD;&#xA;&#x9;&#x9;Date instant = new Date();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return dateFormat.format(instant);&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;public String generateSamlId() {&#xD;&#xA;&#x9;&#x9;UUID uuid = UUID.randomUUID();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;/*&#xD;&#xA;&#x9;&#x9; * prefix the uuid by &apos;_&apos; to avoid an invalid document being&#xD;&#xA;&#x9;&#x9; * generated (XML IDs can&apos;t start with digits)&#xD;&#xA;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;return &quot;_&quot; + uuid.toString();&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;public String generateRelayStateTag(String relayState) {&#xD;&#xA;&#x9;&#x9;StringBuilder relayStateTag = new StringBuilder();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;if ((!isNullValue(relayState)) &amp;&amp; (relayState.length() &gt; 0)) {&#xD;&#xA;&#x9;&#x9;&#x9;relayStateTag.append(&quot;&lt;input type=\&quot;hidden\&quot; name=\&quot;RelayState\&quot; value=\&quot;&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;for (char c : relayState.toCharArray()) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;switch (c) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;case &apos;&amp;&apos;:&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;relayStateTag.append(&quot;&amp;amp;&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;case &apos;&quot;&apos;:&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;relayStateTag.append(&quot;&amp;quot;&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;default:&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;relayStateTag.append(c);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;/* ends the tag */&#xD;&#xA;&#x9;&#x9;&#x9;relayStateTag.append(&quot;\&quot; /&gt;&quot;);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return relayStateTag.toString();&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;public String encodeAuthNRequest(String decoded) {&#xD;&#xA;&#x9;&#x9;String result = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#x9;&#x9;&#x9;if (isNullValue(decoded)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;throw new CircuitAbortException(&quot;No AuthNRequest Provided&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;result = encodeSamlMessage(decoded, true);&#xD;&#xA;&#x9;&#x9;} catch(CircuitAbortException e) {&#xD;&#xA;&#x9;&#x9;&#x9;storeException(e);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return result;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;public String decodeAuthNRequest(String encoded) {&#xD;&#xA;&#x9;&#x9;String result = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#x9;&#x9;&#x9;if (isNullValue(encoded)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;throw new CircuitAbortException(&quot;No AuthNRequest Provided&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;result = decodeSamlMessage(encoded, true);&#xD;&#xA;&#x9;&#x9;} catch(CircuitAbortException e) {&#xD;&#xA;&#x9;&#x9;&#x9;storeException(e);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return result;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;public String encodeSamlResponse(String decoded) {&#xD;&#xA;&#x9;&#x9;String result = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#x9;&#x9;&#x9;if (isNullValue(decoded)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;throw new CircuitAbortException(&quot;No Response Provided&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;result = encodeSamlMessage(decoded, false);&#xD;&#xA;&#x9;&#x9;} catch(CircuitAbortException e) {&#xD;&#xA;&#x9;&#x9;&#x9;storeException(e);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return result;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;public String decodeSamlResponse(String encoded) {&#xD;&#xA;&#x9;&#x9;String result = null;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#x9;&#x9;&#x9;if (isNullValue(encoded)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;throw new CircuitAbortException(&quot;No Response Provided&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;result = decodeSamlMessage(encoded, false);&#xD;&#xA;&#x9;&#x9;} catch(CircuitAbortException e) {&#xD;&#xA;&#x9;&#x9;&#x9;storeException(e);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return result;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * Unwrap existing assertions from EncryptedAssertion nodes after&#xD;&#xA;&#x9; * decryption&#xD;&#xA;&#x9; * &#xD;&#xA;&#x9; * @return &apos;false&apos; if any error occured&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public boolean unwrapAssertions() {&#xD;&#xA;&#x9;&#x9;boolean success = true;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#x9;&#x9;&#x9;Document body = XMLBody.getDocument(msg);&#xD;&#xA;&#x9;&#x9;&#x9;NodeList nodes = body.getElementsByTagNameNS(&quot;urn:oasis:names:tc:SAML:2.0:assertion&quot;, &quot;EncryptedAssertion&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;for (int index = 0; index &lt; nodes.getLength(); index++) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Element encrypted = (Element) nodes.item(index);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Node parent = encrypted.getParentNode();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;NodeList childs = encrypted.getChildNodes();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;for (int child = 0; child &lt; childs.getLength(); child++) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Node assertion = childs.item(child);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if ((assertion.getNodeType() == Node.ELEMENT_NODE) &amp;&amp; (&quot;urn:oasis:names:tc:SAML:2.0:assertion&quot;.equals(assertion.getNamespaceURI())) &amp;&amp; (&quot;Assertion&quot;.equals(assertion.getLocalName()))) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;encrypted.removeChild(assertion);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;parent.insertBefore(assertion, encrypted);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;parent.removeChild(encrypted);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;} catch (IOException e) {&#xD;&#xA;&#x9;&#x9;&#x9;storeException(new CircuitAbortException(&quot;Unable to retrieve XML body&quot;, e));&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;success = false;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return success;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * Check if an object is null&#xD;&#xA;&#x9; *&#xD;&#xA;&#x9; * @param value&#xD;&#xA;&#x9; *            value to be tested&#xD;&#xA;&#x9; * @return &apos;true&apos; if the value is null&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public boolean isNullValue(Object value) {&#xD;&#xA;&#x9;&#x9;/*&#xD;&#xA;&#x9;&#x9; * XXX Did not found another &apos;portable&apos; way to handle missing&#xD;&#xA;&#x9;&#x9; * properties. To be upgraded in the future&#xD;&#xA;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;if ((value instanceof String) &amp;&amp; &quot;[invalid field]&quot;.equals(value)) {&#xD;&#xA;&#x9;&#x9;&#x9;value = null;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return value == null;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;public boolean isEmptyString(String value) {&#xD;&#xA;&#x9;&#x9;if ((value != null) &amp;&amp; (value.trim().isEmpty())) {&#xD;&#xA;&#x9;&#x9;&#x9;value = null;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return isNullValue(value);&#xD;&#xA;&#x9;}&#xD;&#xA;}</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='SetAttributeFilter'>
+					<id field='name' value='Decode SAMLRequest Header from Syncplicity'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="StringReplaceFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="destAttribute"><value></value></fval>
+	<fval name="destAttributeOverride"><value>0</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="matchBehaviour"><value>MATCH_FIRST</value></fval>
+	<fval name="matchMode"><value>STRAIGHT_REPLACE</value></fval>
+	<fval name="name"><value>Change NameID Namespace</value></fval>
+	<fval name="regexMatchString"><value></value></fval>
+	<fval name="replacementString"><value>emailAddress</value></fval>
+	<fval name="sourceAttribute"><value>samlTokenMod</value></fval>
+	<fval name="straightMatchString"><value>unspecified</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='StringReplaceFilter'>
+					<id field='name' value='Add email domain to Alex'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RemoveXMLNodeFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="failIfNoNodesFound"><value>1</value></fval>
+	<fval name="logFailure"><value>Failed to remove XML node from the message</value></fval>
+	<fval name="logFatal"><value>Error removing XML mode from the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Successfully removed XML node from message</value></fval>
+	<fval name="name"><value>Remove XML Node : Remove Issuer Format</value></fval>
+	<fval name="nodeLocation"><value contentType="reference">
+<key type='XPathGroup'><id field='name' value='XPath Definitions'/><key type='XPathRemoveNodeLocationGroup'><id field='name' value='Remove Node Locations'/><key type='XPath'><id field='name' value='SAML Assertion Issuer Format'/></key></key></key>	</value></fval>
+	<fval name="savedDeletedNodes"><value>0</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='SetAttributeFilter'>
+					<id field='name' value='Create SAML Token Mod Attribute'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CopyAttributeFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="logFailure"><value>Failed to copy attributes</value></fval>
+	<fval name="logFatal"><value>Error occurred while copying attributes. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Copied attributes successfully</value></fval>
+	<fval name="name"><value>Copy / Modify Attributes : Retrieve Form Parameters</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Login'/>
+				<key type='CopyAttributeFilter'>
+					<id field='name' value='Copy / Modify Attributes : Generate SAML ID and Issue Instant'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CopyAttribute">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+			<key type='CopyAttributeFilter'>
+				<id field='name' value='Copy / Modify Attributes : Retrieve Form Parameters'/>
+			</key>
+		</key>
+	</key>
+	<fval name="attributeValue"><value>${http.querystring.SAMLRequest}</value></fval>
+	<fval name="fromAttributeLocation"><value>3</value></fval>
+	<fval name="fromAttributeName"><value></value></fval>
+	<fval name="fromAttributeNamespace"><value></value></fval>
+	<fval name="toAttributeLocation"><value>1</value></fval>
+	<fval name="toAttributeName"><value>saml.authnrequest.encoded</value></fval>
+	<fval name="toAttributeNamespace"><value></value></fval>
+	<fval name="toListAttribute"><value>0</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CopyAttribute">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Login'/>
+			<key type='CopyAttributeFilter'>
+				<id field='name' value='Copy / Modify Attributes : Retrieve Form Parameters'/>
+			</key>
+		</key>
+	</key>
+	<fval name="attributeValue"><value>${http.querystring.RelayState}</value></fval>
+	<fval name="fromAttributeLocation"><value>3</value></fval>
+	<fval name="fromAttributeName"><value></value></fval>
+	<fval name="fromAttributeNamespace"><value></value></fval>
+	<fval name="toAttributeLocation"><value>1</value></fval>
+	<fval name="toAttributeName"><value>saml.authnrequest.relaystate</value></fval>
+	<fval name="toAttributeNamespace"><value></value></fval>
+	<fval name="toListAttribute"><value>0</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CircuitContainer">
+	<fval name="name"><value>Syncplicity</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPath">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathSignatureInsertionLocationGroup'>
+			<id field='name' value='Signature Insertion Locations'/>
+		</key>
+	</key>
+	<fval name="encryptNodeType"><value>element</value></fval>
+	<fval name="name"><value>SAML Subject (Before) (SAML 2.0)</value></fval>
+	<fval name="xpath"><value>//saml:Assertion/saml:Subject</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathNamespace">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathSignatureInsertionLocationGroup'>
+			<id field='name' value='Signature Insertion Locations'/>
+			<key type='XPath'>
+				<id field='name' value='SAML Subject (Before) (SAML 2.0)'/>
+			</key>
+		</key>
+	</key>
+	<fval name="URI"><value>urn:oasis:names:tc:SAML:2.0:assertion</value></fval>
+	<fval name="prefix"><value>saml</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathSignatureInsertionLocationGroup">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+	</key>
+	<fval name="name"><value>Signature Insertion Locations</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="FilterCircuit">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+	</key>
+	<fval name="category"><value contentType="reference">
+		<key type='PolicyCategoryGroup'>
+			<id field='name' value='Policy Categories'/>
+			<key type='PolicyCategory'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="description"><value></value></fval>
+	<fval name="logMask"><value>3</value></fval>
+	<fval name="name"><value>Syncplicity Auth Policy</value></fval>
+	<fval name="start"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity Auth Policy'/>
+				<key type='SslFilter'>
+					<id field='name' value='Require SSL/TLS with Client Certificate'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AttributeExtractLdapFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity Auth Policy'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='attribute'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="enablyLegacyAttrNaming"><value>1</value></fval>
+	<fval name="ldapDir"><value contentType="reference">
+<key type='LdapDirectoryGroup'><id field='name' value='LDAP Directories'/><key type='LdapDirectory'><id field='name' value='api-env LDAP'/></key></key>	</value></fval>
+	<fval name="logFailure"><value>Failed to extract attributes from LDAP</value></fval>
+	<fval name="logFatal"><value>Error occurred while extracting attributes from LDAP. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Extracted attributes from LDAP</value></fval>
+	<fval name="messageAttrPrefix"><value>user</value></fval>
+	<fval name="name"><value>Retrieve Mail Attribute from Directory Server</value></fval>
+	<fval name="successNode"><value contentType="reference">-1</value></fval>
+	<fval name="userIdentityAttribName"><value>${authentication.subject.id}</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="LookupAttribute">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity Auth Policy'/>
+			<key type='AttributeExtractLdapFilter'>
+				<id field='name' value='Retrieve Mail Attribute from Directory Server'/>
+			</key>
+		</key>
+	</key>
+	<fval name="name"><value>mail</value></fval>
+	<fval name="namespace"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="LdapSearchAttributes">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity Auth Policy'/>
+			<key type='AttributeExtractLdapFilter'>
+				<id field='name' value='Retrieve Mail Attribute from Directory Server'/>
+			</key>
+		</key>
+	</key>
+	<fval name="base"><value>ou=users,dc=axwaydemo,dc=com</value></fval>
+	<fval name="filter"><value>(&amp;(objectclass=inetOrgPerson)(uid=${authentication.subject.id}))</value></fval>
+	<fval name="name"><value>Retrieve Mail Attribute from Directory Server</value></fval>
+	<fval name="scope"><value>2</value></fval>
+	<fval name="uniqueFlag"><value>1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="HttpBasicFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity Auth Policy'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="allowClientRetry"><value>1</value></fval>
+	<fval name="allowRetries"><value>1</value></fval>
+	<fval name="cacheToUse"><value contentType="reference">
+<key type='CacheManager'><id field='name' value='Cache Manager'/><key type='Cache'><id field='name' value='Invalid Login Attempts'/></key></key>	</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='authentication'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="credentialFormat"><value>Username</value></fval>
+	<fval name="invalidAttempts"><value>5</value></fval>
+	<fval name="lock"><value>0</value></fval>
+	<fval name="lockKey"><value>${http.request.clientaddr}</value></fval>
+	<fval name="lockTimePeriod"><value>30</value></fval>
+	<fval name="lockTimePeriodUnit"><value>minute</value></fval>
+	<fval name="lockUser"><value>0</value></fval>
+	<fval name="logFailure"><value>HTTP basic authentication failed</value></fval>
+	<fval name="logFatal"><value>Error occurred while authenticating via HTTP Basic. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>HTTP basic authentication success for ${authentication.subject.id}</value></fval>
+	<fval name="name"><value>Require HTTP Basic Against External LDAP</value></fval>
+	<fval name="removeAuthNHeader"><value>0</value></fval>
+	<fval name="repository"><value contentType="reference">
+<key type='AuthnRepositoryGroup'><id field='name' value='Authentication Repositories'/><key type='AuthnRepositoryLdapGroup'><id field='name' value='LDAP Repositories'/><key type='AuthnRepositoryLdap'><id field='name' value='api-env OpenLDAP'/></key></key></key>	</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity Auth Policy'/>
+				<key type='AttributeExtractLdapFilter'>
+					<id field='name' value='Retrieve Mail Attribute from Directory Server'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="timePeriod"><value>1</value></fval>
+	<fval name="timePeriodUnit"><value>minute</value></fval>
+	<fval name="userInvalidAttempts"><value>6</value></fval>
+	<fval name="userTimePeriod"><value>5</value></fval>
+	<fval name="userTimePeriodUnit"><value>minute</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SslFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity Auth Policy'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='authentication'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="logFailure"><value>SSL authentication failed</value></fval>
+	<fval name="logFatal"><value>Error occurred during SSL authentication. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>SSL authentication passed for ${authentication.subject.id}</value></fval>
+	<fval name="name"><value>Require SSL/TLS with Client Certificate</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity Auth Policy'/>
+				<key type='HttpBasicFilter'>
+					<id field='name' value='Require HTTP Basic Against External LDAP'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPath">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathAttributeLocationGroup'>
+			<id field='name' value='Attribute Locations'/>
+		</key>
+	</key>
+	<fval name="encryptNodeType"><value>element</value></fval>
+	<fval name="name"><value>SAML AuthnRequest ID</value></fval>
+	<fval name="xpath"><value>/samlp:AuthnRequest/@ID</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathNamespace">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathAttributeLocationGroup'>
+			<id field='name' value='Attribute Locations'/>
+			<key type='XPath'>
+				<id field='name' value='SAML AuthnRequest ID'/>
+			</key>
+		</key>
+	</key>
+	<fval name="URI"><value>urn:oasis:names:tc:SAML:2.0:assertion</value></fval>
+	<fval name="prefix"><value>saml</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathNamespace">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathAttributeLocationGroup'>
+			<id field='name' value='Attribute Locations'/>
+			<key type='XPath'>
+				<id field='name' value='SAML AuthnRequest ID'/>
+			</key>
+		</key>
+	</key>
+	<fval name="URI"><value>urn:oasis:names:tc:SAML:2.0:protocol</value></fval>
+	<fval name="prefix"><value>samlp</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPath">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathSignGroup'>
+			<id field='name' value='Signing XPaths'/>
+		</key>
+	</key>
+	<fval name="encryptNodeType"><value>element</value></fval>
+	<fval name="name"><value>The First SAML 2.0 assertion</value></fval>
+	<fval name="xpath"><value>(//saml:Assertion)[1]</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathNamespace">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+		<key type='XPathSignGroup'>
+			<id field='name' value='Signing XPaths'/>
+			<key type='XPath'>
+				<id field='name' value='The First SAML 2.0 assertion'/>
+			</key>
+		</key>
+	</key>
+	<fval name="URI"><value>urn:oasis:names:tc:SAML:2.0:assertion</value></fval>
+	<fval name="prefix"><value>saml</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XPathSignGroup">
+	<key type='XPathGroup'>
+		<id field='name' value='XPath Definitions'/>
+	</key>
+	<fval name="name"><value>Signing XPaths</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="FilterCircuit">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+	</key>
+	<fval name="category"><value contentType="reference">
+		<key type='PolicyCategoryGroup'>
+			<id field='name' value='Policy Categories'/>
+			<key type='PolicyCategory'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="description"><value></value></fval>
+	<fval name="logMask"><value>3</value></fval>
+	<fval name="name"><value>Syncplicity SAML SSO Logout</value></fval>
+	<fval name="start"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Logout'/>
+				<key type='ChangeMessageFilter'>
+					<id field='name' value='Set Message'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="Reflector">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Logout'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="httpResponseStatus"><value>200</value></fval>
+	<fval name="logFailure"><value>Failed to echo back the message</value></fval>
+	<fval name="logFatal"><value>Error occurred while echoing the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Successfully echoed back the message</value></fval>
+	<fval name="name"><value>Reflect Message</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ChangeMessageFilter">
+	<key type='CircuitContainer'>
+		<id field='name' value='Syncplicity'/>
+		<key type='FilterCircuit'>
+			<id field='name' value='Syncplicity SAML SSO Logout'/>
+		</key>
+	</key>
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="body"><value>This is my SAML SSO Login page for Syncplicity.</value></fval>
+	<fval name="category"><value contentType="reference">
+		<key type='CategoryGroup'>
+			<id field='name' value='Filter Categories'/>
+			<key type='Category'>
+				<id field='name' value='miscellaneous'/>
+			</key>
+		</key>
+	</value></fval>
+	<fval name="logFailure"><value>Failed in setting the message</value></fval>
+	<fval name="logFatal"><value>Error in setting the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Success in setting the message</value></fval>
+	<fval name="name"><value>Set Message</value></fval>
+	<fval name="outputContentType"><value>text/plain</value></fval>
+	<fval name="successNode"><value contentType="reference">
+		<key type='CircuitContainer'>
+			<id field='name' value='Syncplicity'/>
+			<key type='FilterCircuit'>
+				<id field='name' value='Syncplicity SAML SSO Logout'/>
+				<key type='Reflector'>
+					<id field='name' value='Reflect Message'/>
+				</key>
+			</key>
+		</key>
+	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ESConfiguration">
+	<fval name="name"><value>Entity Store Configuration</value></fval>
+	<fval name="passphraseTest"><value>aHR0cDsvL3d3dy52b3JkZWwuY29t</value></fval>
+	<fval name="productKey"><value>VordelGateway</value></fval>
+	<fval name="version"><value>7.5.3</value></fval>
+</entity>
+</entityStoreData>
