@@ -2,7 +2,7 @@
 
 ***WARNING: This policy is a work in progress that has been uploaded for collaborative purposes. The policy is a sample that works for integration in the context it was created, but is not ready for production use.***
 
-Syncplicity SSO Documentation:
+Syncplicity SSO Documentation:  
 https://syncplicity.zendesk.com/hc/en-us/articles/202392804-Configuring-single-sign-on-SSO-
 
 API Gateway SAML Documentation:
